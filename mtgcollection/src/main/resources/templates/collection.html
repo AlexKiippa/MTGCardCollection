@@ -1,0 +1,53 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Magic The Gathering Collection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" /> 
+</head>
+<body>
+<div class="col-md-4" >
+	<h1><img height=50px src="https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Magic_the_gathering-card_back.jpg/220px-Magic_the_gathering-card_back.jpg"> Magic The Gathering Card Collection <img height=50px src="https://upload.wikimedia.org/wikipedia/en/thumb/a/aa/Magic_the_gathering-card_back.jpg/220px-Magic_the_gathering-card_back.jpg"></h1>
+	</div>
+	
+	
+	<div class="col-md-4">
+		<i>Welcome <b sec:authentication="name"></b>, 
+        your role is <b sec:authentication="principal.authorities"></b>
+	</div>
+	
+	<div class="col-md-4" style="padding:20px 0">
+		<form th:action="@{/logout}" method="post">
+			<input type="submit" value="Sign Out" class="btn btn-sm btn-danger"/>
+		</form>
+	</div>
+	
+	 
+	
+	
+	
+	
+	
+    <table class="table table-striped">
+		<tr>
+		    <th>Card Name</th>
+		    <th>Card Type  <img height=20px src="https://deckmaster.info/images/sets/GS1_C.png"> </th>
+		    <th>Mana Cost <img height=20px src="https://preview.redd.it/if-a-card-has-this-symbol-in-its-mana-cost-can-you-pay-it-v0-gvnh8b6pv24a1.png?auto=webp&s=16be07b9fd0d24669116f6dd0841a1e5c796825b"> </th>
+		    <th>Card Color<img src="https://managathering.com/images/multi.png" height=25px> </th>
+		    <th>multicolored</th>
+		    <th></th>
+		    
+		    
+		</tr>  
+    	<tr th:each = "card : ${cards}">
+    		<td th:text="${card.cardName}"></td>
+    		<td th:text="${card.cardtype.cardType}"></td>
+    		<td th:text="${card.manaCost}"></td>
+    		<td th:text="${card.cardcolor.cardColor}"></td>
+    		<td th:text="${card.multicolored}"></td>		
+ 			<td sec:authorize="hasAuthority('ADMIN')" ><a class="btn btn-danger" th:href="@{/delete/{id}(id=${card.id})}">Delete</a></td>    		
+    	</tr>
+     </table>
+	 <a class="btn btn-success" href="/addcard">Add New Card</a>    	
+</body>
+</html>

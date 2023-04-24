@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Magic The Gathering Card Collection</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" th:href="@{css/bootstrap.min.css}" href="/css/bootstrap.min.css" />
+</head>
+<body>
+	<h1>Add Card</h1>
+	<div class="col-md-4" >
+		<form th:object="${card}" th:action="@{save}" action="#" method="post">
+		  	<label for="author">Card Name</label>
+			<input type="text" id="cardName" th:field="*{cardName}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+			
+		  	<label for="cardtypelist">Card Type</label>
+			 <select id="cardtypelist" th:field="*{cardtype}" class="form-control">
+       			<option th:each="cardtype: ${cardtypes}" th:value="${cardtype.cardTypeid}" th:text="${cardtype.cardType}"></option>
+    		</select>
+			
+		  	<label for="title">Mana Cost</label>
+			<input type="text" id="manaCost" th:field="*{manaCost}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+
+			
+			<label for="cardcolorlist">Card Color</label>
+			 <select id="cardcolorlist" th:field="*{cardcolor}" class="form-control">
+       			<option th:each="cardcolor: ${cardcolors}" th:value="${cardcolor.cardColorid}" th:text="${cardcolor.cardColor}"></option>
+    		</select>
+    		
+ 			<label for="title">Multicolored</label>
+ 			
+    			<select class="form-control" th:field="*{multicolored}">
+  			 		<option th:value="1" >true</option>
+   				 	<option th:value="0" >false</option>
+				</select>
+    		
+			
+			
+							
+		  	
+		  	
+			
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>
