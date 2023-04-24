@@ -13,14 +13,15 @@
 			<input type="text" id="cardName" th:field="*{cardName}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
 			
-		  	<label for="cardtypelist">Card Type</label>
-			 <select id="cardtypelist" th:field="*{cardtype}" class="form-control">
-       			<option th:each="cardtype: ${cardtypes}" th:value="${cardtype.cardTypeid}" th:text="${cardtype.cardType}"></option>
-    		</select>
 			
 		  	<label for="title">Mana Cost</label>
 			<input type="text" id="manaCost" th:field="*{manaCost}" />
 			<div style="clear: both; display: block; height: 10px;"></div>
+			
+				<label for="cardtypelist">Card Type</label>
+			 <select id="cardtypelist" th:field="*{cardtype}" class="form-control">
+       			<option th:each="cardtype: ${cardtypes}" th:value="${cardtype.cardTypeid}" th:text="${cardtype.cardType}"></option>
+    		</select>
 
 			
 			<label for="cardcolorlist">Card Color</label>
