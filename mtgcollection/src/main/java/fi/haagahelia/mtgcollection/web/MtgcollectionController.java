@@ -42,6 +42,13 @@ public class MtgcollectionController {
 		}
 		
 		
+		// From localhost:8080/ to /login
+		@RequestMapping(value="/")
+		public String tologin() {
+			return "login";
+	}
+		
+		
 		// Show all cards in the collection
 		@RequestMapping(value= {"/collection"})
 		public String collection(Model model) {
@@ -83,7 +90,7 @@ public class MtgcollectionController {
 	       }
 	       
 	       // Delete card From the list
-	       @PreAuthorize("hasAuthority('ADMIN')")
+	       @PreAuthorize("hasAuthority('ADMIN')")  // When user has role 'ADMIN' is able to delete.
 	       @RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	       public String deleteCard(@PathVariable("id") Long cardid, Model model) {
 	    	   repository.deleteById(cardid);

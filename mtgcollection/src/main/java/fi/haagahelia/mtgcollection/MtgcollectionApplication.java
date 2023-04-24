@@ -35,6 +35,8 @@ public class MtgcollectionApplication {
 		log.info("save couple cards");
 		
 		
+		// Luodaan valmiit värit korteille
+		
 		crepository.save(new CardColor("Black"));
 		crepository.save(new CardColor("White"));
 		crepository.save(new CardColor("Green"));
@@ -42,6 +44,8 @@ public class MtgcollectionApplication {
 		crepository.save(new CardColor("Red"));
 		crepository.save(new CardColor("Colorless"));
 		
+		
+		// Luodaan valmiit Tyypit korteille
 		ctrepository.save(new CardType("Artifact"));
 		ctrepository.save(new CardType("Instant"));
 		ctrepository.save(new CardType("Creature"));
@@ -51,14 +55,16 @@ public class MtgcollectionApplication {
 		ctrepository.save(new CardType("Planeswalker"));
 		
 		
+		// Tallennetaan muutama kortti
 		repository.save(new Card("Arcane Signet", ctrepository.findBycardType("Artifact").get(0), 2, false, crepository.findBycardColor("Colorless").get(0) ));
 		repository.save(new Card("Sol Ring", ctrepository.findBycardType("Artifact").get(0), 1, false, crepository.findBycardColor("Colorless").get(0) ));
 		repository.save(new Card("Sickening Dreams", ctrepository.findBycardType("Sorcery").get(0),2, false,crepository.findBycardColor("Black").get(0) ));
 		
 		
+		// Luodaan 3 käyttäjää 2 admin käyttäjää admin salasana on admin ja alex käyttäjän salasana huonosalasana. Userilla salasana user
 		AppUser user1 = new AppUser("user", "$2a$06$3jYRJrg0ghaaypjZ/.g4SethoeA51ph3UD4kZi9oPkeMTpjKU5uo6", "USER");
 		AppUser user2 = new AppUser("admin", "$2a$10$0MMwY.IQqpsVc1jC8u7IJ.2rT8b0Cd3b3sfIBGV2zfgnPGtT4r0.C", "ADMIN");
-		AppUser user3 = new AppUser("alex", "$2y$10$LE/DXurNQY4Q7mWV6.V8o.qKMbW35p4dIz2bUaFXUnPROujIAb2cu", "ADMIN");
+		AppUser user3 = new AppUser("alex", "$2y$10$yaFPfU9SbjgNUJcutXGFxerkP6A3RcnrAOrf7xueJpaSMFOxRwR.O", "ADMIN");
 		urepository.save(user1);
 		urepository.save(user2);
 		urepository.save(user3);

@@ -47,11 +47,13 @@ public class UserController {
 		    	if (repository.findByUsername(signupForm.getUsername()) == null) { // Check if user exists
 		    		repository.save(newUser);
 		    	}
+		    	
+		    	// jos käyttäjänimi on jo käytössä tulee error viesti "Username already exists"
 		    	else {
 	    			bindingResult.rejectValue("username", "err.username", "Username already exists");    	
 	    			return "signup";		    		
 		    	}
-    		}
+    		}			// jos vahvista salasana kenttä ei ole sama salasanakentän kanssa tulee virhe koodi "Passwords does not match"
     		else {
     			bindingResult.rejectValue("passwordCheck", "err.passCheck", "Passwords does not match");    	
     			return "signup";
