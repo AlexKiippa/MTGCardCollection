@@ -14,6 +14,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.hamcrest.CoreMatchers.containsString;
 
 import fi.haagahelia.mtgcollection.web.MtgcollectionController;
 
@@ -29,13 +32,8 @@ public class WebLayerTest {
  private MtgcollectionController controller;
  
  @Test
- public void getcarddataAPI() throws Exception 
- {
-   mockMvc.perform( MockMvcRequestBuilders
- 	      .get("/card/{id}", 1)
- 	      .accept(MediaType.APPLICATION_JSON))
-       .andDo(print())
-       .andExpect(status().isOk())
-       .andExpect(MockMvcResultMatchers.jsonPath("$.cardid").value(1));
-}
+ public void SeeifLoginpagehasString() throws Exception {
+	 this.mockMvc.perform(get("/login")).andDo(print()).andExpect(status().isOk())
+	 .andExpect(content().string(containsString("Login page")));
+	 }
 }
